@@ -1,4 +1,7 @@
-package semaforo;
+package monitor;
+
+
+import semaforo.EstadoFilosofo;
 
 public class Filosofo extends Thread {
     int id;
@@ -10,12 +13,12 @@ public class Filosofo extends Thread {
     }
 
     public void comFome() {
-        Main.estado[this.id] = EstadoFilosofo.COM_FOME.getValue();
+        monitor.Main.estado[this.id] = EstadoFilosofo.COM_FOME.getValue();
         System.out.println(getName() + " está FAMINTO");
     }
 
     public void comer() {
-        Main.estado[this.id] = EstadoFilosofo.COMENDO.getValue();
+        monitor.Main.estado[this.id] = EstadoFilosofo.COMENDO.getValue();
         System.out.println(getName() + " está COMENDO");
         try {
             Thread.sleep(TEMPO_OPERACAO);
@@ -25,7 +28,7 @@ public class Filosofo extends Thread {
     }
 
     public void pensar() {
-        Main.estado[this.id] = EstadoFilosofo.PENSANDO.getValue();
+        monitor.Main.estado[this.id] = EstadoFilosofo.PENSANDO.getValue();
         System.out.println(getName() + " está PENSANDO");
         try {
             Thread.sleep(TEMPO_OPERACAO);
@@ -34,28 +37,22 @@ public class Filosofo extends Thread {
         }
     }
 
-    public void largarGarfo() throws InterruptedException {
-        Main.mutex.acquire();
+    public synchronized void largarGarfo() {
         this.pensar();
-        Main.filosofos[vizinhoEsquerda()].tentaObterGarfos();
-        Main.filosofos[vizinhoDireita()].tentaObterGarfos();
-        Main.mutex.release();
+        monitor.Main.filosofos[vizinhoEsquerda()].tentaObterGarfos();
+        monitor.Main.filosofos[vizinhoDireita()].tentaObterGarfos();
     }
 
-    public void pegarGarfo() throws InterruptedException {
-        Main.mutex.acquire();
+    public synchronized void  pegarGarfo() {
         this.comFome();
         tentaObterGarfos();
-        Main.mutex.release();
-        Main.semaforos[this.id].acquire();
     }
 
     public void tentaObterGarfos() {
-        if (Main.estado[this.id] == EstadoFilosofo.COM_FOME.getValue()
-        && Main.estado[vizinhoEsquerda()] != EstadoFilosofo.COMENDO.getValue()
-        && Main.estado[vizinhoDireita()] != EstadoFilosofo.COMENDO.getValue()) {
+        if (monitor.Main.estado[this.id] == EstadoFilosofo.COM_FOME.getValue()
+                && monitor.Main.estado[vizinhoEsquerda()] != EstadoFilosofo.COMENDO.getValue()
+                && monitor.Main.estado[vizinhoDireita()] != EstadoFilosofo.COMENDO.getValue()) {
             this.comer();
-            Main.semaforos[this.id].release();
         } else {
             System.out.println(getName() + " nao conseguiu comer");
         }
@@ -88,3 +85,4 @@ public class Filosofo extends Thread {
         }
     }
 }
+

@@ -1,0 +1,19 @@
+
+h
+java:S2142I"FEither re-interrupt this method or rethrow the "InterruptedException".(è®ã¶øÿÿÿÿ8õ«„Þ¬/
+g
+java:S1192"JDefine a constant instead of duplicating this literal "ERROR >> " 3 times.(°šˆþ8õ«„Þ¬/
+U	java:S106J"9Replace this use of System.out or System.err by a logger.(ó½•Ü8õ«„Þ¬/
+U	java:S106!"9Replace this use of System.out or System.err by a logger.(°šˆþ8óˆËÝ¬/
+c
+java:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ä™ÅÝ¬/
+c
+java:S2142 "FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8óˆËÝ¬/
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(üþÚÅýÿÿÿÿ8ËÉ¾Ý¬/
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(–ó´‰ÿÿÿÿÿ8ØÍÁÝ¬/
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(ë·€èýÿÿÿÿ8‚ÏÊÝ¬/
+8
+java:S3626K"Remove this redundant jump.(ûÁÝ…8õ«„Þ¬/
+u	java:S116"YRename this field "TEMPO_OPERACAO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(íÕ¡½8Ç÷ÃÝ¬/
+Z	java:S106<"9Replace this use of System.out or System.err by a logger.(ÍûõÍøÿÿÿÿ8õ«„Þ¬/
+U	java:S106"9Replace this use of System.out or System.err by a logger.(°šˆþ8ûØÆÝ¬/
